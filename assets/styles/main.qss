@@ -1,0 +1,57 @@
+/* === Главное окно — прозрачное === */
+QMainWindow {
+    background: transparent;
+}
+
+/* === Центральный виджет — фон + скруглённые углы === */
+#centralwidget {
+background-color: rgba(240, 240, 240, 220);   /* остаётся как запасной фон */
+border-image: url(assets/images/background.png) 0 0 0 0 stretch stretch;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;                        /* растянуть на всё окно */
+border-radius: 16px;
+}
+
+/* === Шапка окна — прозрачная === */
+#titleBar {
+    background: transparent;
+}
+
+
+#titleBar QLabel {
+    color: #e0e0e0;
+    font-size: 13px;
+    padding-left: 12px;
+    background: transparent;
+}
+
+/* === Кнопки в шапке === */
+QPushButton#btnClose,
+QPushButton#btnMinimize {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
+    min-width: 48px;
+    min-height: 48px;
+    max-width: 48px;
+    max-height: 48px;
+}
+
+/* Закрыть — обычная / при наведении */
+QPushButton#btnClose {
+    image: url(assets/icons/close-normal.svg);
+}
+QPushButton#btnClose:hover {
+    image: url(assets/icons/close-hover.svg);
+}
+
+/* Свернуть — обычная / при наведении */
+QPushButton#btnMinimize {
+    image: url(assets/icons/minimize-normal.svg);
+    margin-right: 10px;    /* отступ справа от btnMinimize */
+}
+QPushButton#btnMinimize:hover {
+    image: url(assets/icons/minimize-hover.svg);
+}
