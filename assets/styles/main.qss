@@ -4,7 +4,7 @@ QMainWindow {
 }
 
 /* === Центральный виджет — фон + скруглённые углы === */
-#centralwidget {
+#rightContainer {
 background-color: rgba(240, 240, 240, 220);   /* остаётся как запасной фон */
 border-image: url(assets/images/background.png) 0 0 0 0 stretch stretch;
 background-position: center;
@@ -26,20 +26,126 @@ border-radius: 16px;
     background: transparent;
 }
 
+#widgetLine {
+    background-color: #1E1E1E;
+    border-radius: 2px;
+}
+
+#contentWidget {
+    background-color: rgba(60, 60, 60, 220);
+    border-radius: 16px;
+    margin: 8px;
+}
+
+/* infoLabel */
+#infoPanel {
+    background-color: rgba(255, 255, 255, 180);
+    border: 1px solid rgba(255, 255, 255, 80);
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    margin: 8px;
+}
+
+QLabel#infoLabel {
+    color: #1E1E1E;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600; /* 400 — Обычный, 600 - Полужирный, 700 - Жирный */
+}
+
+QLabel#infoLabel_2 {
+    color: #1E1E1E;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400; /* 400 — Обычный, 600 - Полужирный, 700 - Жирный */
+}
+/* infoLabel */
+
 /* === Кнопки в шапке === */
 QPushButton#btnClose,
-QPushButton#btnMinimize {
+QPushButton#btnMinimize,
+QPushButton#btnInfo,
+QPushButton#btnGithub {
     border: none;
     outline: none;
     background: transparent;
     padding: 0;
-    min-width: 48px;
-    min-height: 48px;
-    max-width: 48px;
-    max-height: 48px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
 }
 
-/* Закрыть — обычная / при наведении */
+QListWidget#listWidget {
+    background-color: rgba(0, 0, 0, 20);
+    border-radius: 16px;
+    color: #FFFFFF;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px;
+}
+
+/* Скрываем вертикальный скроллбар */
+QListWidget#listWidget QScrollBar:vertical {
+    width: 0px;
+    background: transparent;
+}
+
+/* Скрываем горизонтальный скроллбар */
+QListWidget#listWidget QScrollBar:horizontal {
+    height: 0px;
+    background: transparent;
+}
+
+/* Выделенный элемент */
+QListWidget#listWidget::item:selected {
+    background-color: rgba(200, 200, 200, 150);
+    color: #000000;
+    border-radius: 4px;
+}
+
+QListWidget#listWidget::item:hover {
+    background-color: rgba(255, 255, 255, 30);
+}
+
+QPushButton#btnLanguage {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    font-family: "Inter";
+    font-size: 16px;
+    font-weight: 600;
+    color: #F0F0F0;
+}
+
+QPushButton#btnOpenFolder {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
+    min-width: 128px;
+    min-height: 80px;
+    max-width: 128px;
+    max-height: 80px;
+    font-family: "Inter";
+    font-size: 16px;
+    font-weight: 600;
+    color: #F0F0F0;
+}
+
+QLabel#xmlIcon {
+    min-width: 250px;
+    min-height: 64px;
+    max-width: 250px;
+    max-height: 64px;
+}
+
 QPushButton#btnClose {
     image: url(assets/icons/close-normal.svg);
 }
@@ -47,11 +153,42 @@ QPushButton#btnClose:hover {
     image: url(assets/icons/close-hover.svg);
 }
 
-/* Свернуть — обычная / при наведении */
 QPushButton#btnMinimize {
     image: url(assets/icons/minimize-normal.svg);
-    margin-right: 10px;    /* отступ справа от btnMinimize */
+    margin-right: 10px;
+    margin-left: 10px;
 }
 QPushButton#btnMinimize:hover {
     image: url(assets/icons/minimize-hover.svg);
+}
+
+QPushButton#btnInfo {
+    image: url(assets/icons/info-normal.svg);
+    margin-right: 10px;
+}
+QPushButton#btnInfo:hover {
+    image: url(assets/icons/info-hover.svg);
+}
+
+QPushButton#btnGithub {
+    image: url(assets/icons/github-normal.svg);
+    margin-right: 10px;
+}
+QPushButton#btnGithub:hover {
+    image: url(assets/icons/github-hover.svg);
+}
+QPushButton#btnLanguage {
+    image: url(assets/icons/language-normal.svg);
+    margin-right: 10px;
+}
+QPushButton#btnLanguage:hover {
+    image: url(assets/icons/language-hover.svg);
+}
+
+/* --- */
+QPushButton#btnOpenFolder {
+    image: url(assets/icons/openfolder-normal.svg);
+}
+QPushButton#btnOpenFolder:hover {
+    image: url(assets/icons/openfolder-hover.svg);
 }
