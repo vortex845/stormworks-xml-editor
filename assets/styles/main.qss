@@ -57,15 +57,34 @@ QLabel#infoLabel_2 {
     color: #1E1E1E;
     font-family: "Inter";
     font-size: 14px;
-    font-weight: 400; /* 400 — Обычный, 600 - Полужирный, 700 - Жирный */
+    font-weight: 400;
 }
 /* infoLabel */
+
+QLabel#listLabel {
+    background-color: rgba(0, 0, 0, 20);
+    color: #F0F0F0;
+    font-family: "Inter";
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 16px;
+}
+
+QLabel#fileCount {
+    background-color: rgba(0, 0, 0, 20);
+    color: #F0F0F0;
+    font-family: "Inter";
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 16px;
+}
 
 /* === Кнопки в шапке === */
 QPushButton#btnClose,
 QPushButton#btnMinimize,
 QPushButton#btnInfo,
-QPushButton#btnGithub {
+QPushButton#btnGithub,
+QPushButton#btnSettings {
     border: none;
     outline: none;
     background: transparent;
@@ -79,6 +98,7 @@ QPushButton#btnGithub {
 QListWidget#listWidget {
     background-color: rgba(0, 0, 0, 20);
     border-radius: 16px;
+    outline: none;
     color: #FFFFFF;
     font-family: "Inter";
     font-size: 14px;
@@ -100,7 +120,7 @@ QListWidget#listWidget QScrollBar:horizontal {
 
 /* Выделенный элемент */
 QListWidget#listWidget::item:selected {
-    background-color: rgba(200, 200, 200, 150);
+    background-color: rgba(220, 220, 220, 180);
     color: #000000;
     border-radius: 4px;
 }
@@ -177,12 +197,21 @@ QPushButton#btnGithub {
 QPushButton#btnGithub:hover {
     image: url(assets/icons/github-hover.svg);
 }
+
 QPushButton#btnLanguage {
     image: url(assets/icons/language-normal.svg);
     margin-right: 10px;
 }
 QPushButton#btnLanguage:hover {
     image: url(assets/icons/language-hover.svg);
+}
+
+QPushButton#btnSettings {
+    image: url(assets/icons/settings-normal.svg);
+    margin-right: 10px;
+}
+QPushButton#btnSettings:hover {
+    image: url(assets/icons/settings-hover.svg);
 }
 
 /* --- */

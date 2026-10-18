@@ -4,6 +4,8 @@ TEXTS = {
         "title": "Stormworks XML Editor",
         "info_title": """<html><head/><body><p align="center"><span style=" font-size:16pt;">Информация</span></p></body></html>""",
         "info_text": """<html><head/><body><p align="justify"><span style=" font-size:12pt;">Используйте &lt;Открыть Папку&gt; чтобы выбрать XML папку с сохранёнными постройками</span></p></body></html>""",
+        "vehiclelist_text": """<html><head/><body><p>Список Построек</p></body></html>""",
+        "file_count": "Загружено файлов: {}",
         "open_btn": "Открыть Папку",
         "open_btn_size": "14px",
         "select_folder": "Выберите папку...",
@@ -13,6 +15,8 @@ TEXTS = {
         "title": "Stormworks XML Editor",
         "info_title": """<html><head/><body><p align="center"><span style=" font-size:16pt;">Information</span></p></body></html>""",
         "info_text": """<html><head/><body><p align="justify"><span style=" font-size:12pt;">Use &lt;Open Folder&gt; to select XML folder with vehicle saves</span></p></body></html>""",
+        "vehiclelist_text": """<html><head/><body><p>Vehicle List</p></body></html>""",
+        "file_count": "Files loaded: {}",
         "open_btn": "Open Folder",
         "open_btn_size": "16px",
         "select_folder": "Select folder...",
@@ -71,7 +75,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.move(100, 100)
 
         self.panelContainer = ShadowContainer(self.infoPanel, self.centralwidget)
-        self.panelContainer.setGeometry(1000, 1000, 300, 200)
+        self.panelContainer.setGeometry(1000, 1000, 300, 400)
         self.panelContainer.raise_()
         self.infoPanel_x = 1024
 
@@ -91,6 +95,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btnOpenFolder.clicked.connect(self.open_folder_and_load_xml)
 
         self.btnLanguage.clicked.connect(self.toggle_language)
+
+        self.fileCount.setText(TEXTS[self.current_lang]["file_count"].format(0))
 
         # === ПЕРЕТАСКИВАНИЕ ОКНА ЗА titleBar ===
         self.titleBar.mousePressEvent = self.titleBar_mouse_press
@@ -122,9 +128,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Текст у Label'ов
         self.infoLabel.setText(texts["info_title"])
         self.infoLabel_2.setText(texts["info_text"])
+        self.listLabel.setText(texts["vehiclelist_text"])
 
         # Заголовок окна
         self.setWindowTitle(texts["title"])
+
+        current_count = self.listWidget.count()
+        if current_count == 1 and self.listWidget.item(0).text() in [TEXTS["ru"]["no_files"], TEXTS["en"]["no_files"]]:
+                current_count = 0
+        self.fileCount.setText(texts["file_count"].format(current_count))
 
     def open_github(self):
         QDesktopServices.openUrl(QUrl("https://github.com/vortex845/stormworks-xml-editor"))
@@ -155,6 +167,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # 2. Очищаем список от старых файлов
         self.listWidget.clear()
+        self.fileCount.setText(TEXTS[self.current_lang]["file_count"].format(0))
 
         # 3. Ищем XML-файлы
         search_pattern = os.path.join(folder_path, "*.xml")
@@ -168,6 +181,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for file_path in xml_files:
             file_name = os.path.basename(file_path)
             self.listWidget.addItem(file_name)
+
+        # 3. ОБНОВЛЯЕМ СЧЕТЧИК (количество найденных файлов)
+        count = len(xml_files)
+        self.fileCount.setText(TEXTS[self.current_lang]["file_count"].format(count))
 
     # === ПЕРЕТАСКИВАНИЕ ===
     def titleBar_mouse_press(self, event):
